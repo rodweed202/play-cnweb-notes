@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 信息卡片 | 日常查询与对照</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fcfcfc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      line-height: 1.7;
+      color: #1e2a3a;
+      -webkit-font-smoothing: antialiased;
+      padding: 2rem 1.25rem;
+    }
+
+    .page-wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* 极简留白与层级 */
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem 0;
+      border-bottom: 1px solid #eaeef2;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #10161e;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .subhead {
+      font-size: 1rem;
+      color: #5a6b7d;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #7d8b9f;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #1a2533;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 1.5rem 0 2.5rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 6px 20px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s ease;
+      border: 1px solid #f0f3f7;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 10px 28px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 520;
+      color: #1c2938;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card p, .card ul {
+      font-size: 0.95rem;
+      color: #2c3e50;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.3rem;
+    }
+
+    .card ul li {
+      padding: 0.2rem 0;
+      padding-left: 1.3rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #3e6b8c;
+      font-weight: 700;
+    }
+
+    .audience-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .audience-tag {
+      background: #eef4f9;
+      border-radius: 30px;
+      padding: 0.2rem 1rem;
+      font-size: 0.85rem;
+      color: #1f3b54;
+      font-weight: 450;
+    }
+
+    .link-paragraph {
+      background: #f6f9fd;
+      border-left: 4px solid #b3c9dd;
+      border-radius: 0 14px 14px 0;
+      padding: 1.4rem 1.8rem;
+      margin: 2.2rem 0 2.8rem 0;
+      font-size: 0.97rem;
+      color: #1c2a3b;
+    }
+
+    .link-paragraph a {
+      color: #1e5a7a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      font-weight: 500;
+      transition: color 0.1s;
+    }
+
+    .link-paragraph a:hover {
+      color: #083a57;
+    }
+
+    .faq-summary {
+      margin-top: 2rem;
+    }
+
+    .faq-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e7edf3;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-answer {
+      font-size: 0.92rem;
+      color: #43586b;
+    }
+
+    .footnote {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e1e8ef;
+      font-size: 0.8rem;
+      color: #6b7f94;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 1.2rem 0.9rem; }
+      .hero h1 { font-size: 2rem; }
+      .card { padding: 1.3rem 1.2rem; }
+      .link-paragraph { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- hero 主视觉 -->
+  <div class="hero">
+    <h1>世界杯 · 日常对照</h1>
+    <div class="subhead">
+      从赛程查询、历史对照到延伸阅读 —— 一个安静的信息卡片页。
+    </div>
+  </div>
+
+  <!-- 用途卡片 -->
+  <div class="section-label">📋 用途卡片</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">🔍 快速查询与对照</div>
+      <p>不论是今年小组赛分组，还是往届冠军列表，都可作为轻量参考。卡片式结构便于扫读，适合在讨论、观赛或写稿时快速比对。</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 延伸阅读入口</div>
+      <p>通过一个集中的索引，可以触达赛事规则、历史数据、球队档案等深度内容。日常浏览时顺手打开，当作知识补充站。</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🧩 碎片信息整理</div>
+      <p>把散落在社交平台或新闻中的零散信息，通过分类卡片归拢，方便回顾。也适合提前标记自己关注的比赛日。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 -->
+  <div class="section-label">👥 适合人群</div>
+  <div class="card" style="margin-bottom: 0.8rem;">
+    <p style="margin-bottom: 0.2rem;">无论你是哪一种角色，都能在这里找到对应的内容节奏：</p>
+    <div class="audience-row">
+      <span class="audience-tag">⚽ 轻度球迷</span>
+      <span class="audience-tag">📊 数据爱好者</span>
+      <span class="audience-tag">✍️ 内容作者</span>
+      <span class="audience-tag">🎙️ 播客/视频准备</span>
+      <span class="audience-tag">🧑‍🏫 课堂/讨论素材</span>
+    </div>
+    <ul style="margin-top: 0.8rem;">
+      <li>想快速了解某届赛事阵容，又不想陷入冗长页面</li>
+      <li>写文章或做视频时需要核对年份、比分、举办国</li>
+      <li>仅仅想在日常阅读里多一个知识角落</li>
+    </ul>
+  </div>
+
+  <!-- 自然链接段落（句子式嵌入，符合要求） -->
+  <div class="link-paragraph">
+    <p>如果你希望从一个相对安静、不含弹窗和强推送的地方开始了解相关内容，可以记住这个页面。日常查询、对照或延伸阅读时，不妨直接打开 <a href="https://play-cnweb-shijiebei.com">世界杯</a> 作为你的信息锚点。它不制造焦虑，也不过度承诺，只是一个干净的信息起点。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="section-label">❓ 常见摘要</div>
+  <div class="faq-summary card" style="padding: 0.8rem 1.8rem 0.2rem;">
+    <div class="faq-item">
+      <div class="faq-question">这个页面会频繁更新吗？</div>
+      <div class="faq-answer">保持内容稳定性，主要提供索引和对照功能，不追求实时刷新，适合日常翻阅。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">我可以把这里的内容分享给朋友吗？</div>
+      <div class="faq-answer">当然，所有内容均为公开信息整理，分享时注明出处即可。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">除了赛程，还能查到什么？</div>
+      <div class="faq-answer">历史决赛对阵、经典比赛摘要、各届吉祥物、主题曲等延伸资料也在收录范围内。</div>
+    </div>
+  </div>
+
+  <!-- 脚注 -->
+  <div class="footnote">
+    —— 信息卡片 · 日常对照 · 极简留白 ——
+  </div>
+
+</div>
+</body>
+</html>
